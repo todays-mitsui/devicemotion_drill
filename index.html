@@ -24,8 +24,7 @@
         window.addEventListener('devicemotion', function(event) {
           const { x, y, z } = event.accelaration;
           const { x: gx, y: gy, z: gz } = event.accelerationIncludingGravity;
-          document.querySelector('main').innerText = `(${fmt(x)}, ${fmt(y)}, ${fmt(z)})
-(${fmt(gx)}, ${fmt(gy)}, ${fmt(gz)})`;
+          document.querySelector('main').innerText = `(${fmt(x)}, ${fmt(y)}, ${fmt(z)})<br>(${fmt(gx)}, ${fmt(gy)}, ${fmt(gz)})`;
         });
       }
     }
