@@ -4,17 +4,24 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>DeviceMotion</title>
 </head>
 <body>
 <main></main>
 
 <script>
 {
-  window.addEventListener('devicemotion', function(event) {
-    const { x, y, z } = event.acceleration;
-    document.querySelector('main').innerText = `(${x}, ${y}, ${z})`;
-  });
+  if ('requestPermission' in DeviceMotionEvent) {
+    DeviceMotionEvent.requestPermission()
+      .then(permissionState => {
+        if (permissionState == 'granted') {
+          window.addEventListener('devicemotion', function(event) {
+            const { x, y, z } = event.accelerationIncludingGravity;
+            document.querySelector('main').innerText = `(${x}, ${y}, ${z})`;
+          });
+        }
+      })
+  }
 }
 </script>
 </body>
