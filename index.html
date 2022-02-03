@@ -12,14 +12,18 @@
 
 <script>
 {
+  function fmt(v) {
+    return Number(v).toFixed(3);
+  }
+
   async function deviceMotionRequest() {
     if ('requestPermission' in DeviceMotionEvent) {
       const permissionState = await DeviceMotionEvent.requestPermission();
 
       if (permissionState == 'granted') {
         window.addEventListener('devicemotion', function(event) {
-          const { x, y, z } = event.accelerationIncludingGravity;
-          document.querySelector('main').innerText = `(${x}, ${y}, ${z})`;
+          const { x, y, z } = event.accelaration;
+          document.querySelector('main').innerText = `(${fmt(x)}, ${fmt(y)}, ${fmt(z)})`;
         });
       }
     }
