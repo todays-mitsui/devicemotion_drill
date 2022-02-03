@@ -23,7 +23,9 @@
       if (permissionState == 'granted') {
         window.addEventListener('devicemotion', function(event) {
           const { x, y, z } = event.accelaration;
-          document.querySelector('main').innerText = `(${fmt(x)}, ${fmt(y)}, ${fmt(z)})`;
+          const { x: gx, y: gy, z: gz } = event.accelerationIncludingGravity;
+          document.querySelector('main').innerText = `(${fmt(x)}, ${fmt(y)}, ${fmt(z)})
+(${fmt(gx)}, ${fmt(gy)}, ${fmt(gz)})`;
         });
       }
     }
